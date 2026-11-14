@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "mulm.netspeed",
+  "name": "Net speed",
+  "version": "1.0.0",
+  "author": "mulm",
+  "license": "MIT",
+  "description": "Live download and upload speed in the bar, read straight from /proc with no helper processes.",
+  "kinds": ["bar-widget"],
+  "entryPoints": { "barWidget": "Widget.qml" },
+  "barWidget": {
+    "displayName": "Net speed",
+    "description": "↓ download and ↑ upload per second on the interfaces that carry your default route. Hover for peaks and totals; click for the network panel, right-click for a speed test.",
+    "category": "System",
+    "allowMultiple": false,
+    "defaultSection": "right",
+    "defaults": {
+      "intervalMs": 1000,
+      "unit": "Bytes",
+      "interface": ""
+    },
+    "schema": [
+      { "key": "intervalMs", "type": "integer", "label": "Update interval (ms)", "min": 500, "max": 5000, "step": 250, "defaultValue": 1000 },
+      { "key": "unit", "type": "enum", "label": "Unit", "options": ["Bytes", "Bits"], "defaultValue": "Bytes", "description": "Bytes per second (KB/s, MB/s; 1024-based) or bits per second (Kb/s, Mb/s; 1000-based)." },
+      { "key": "interface", "type": "string", "label": "Interfaces", "defaultValue": "", "description": "Comma-separated interface names, e.g. wlan0. Empty follows the default route, so switching between Wi-Fi and Ethernet just works." }
+    ]
+  }
+}
